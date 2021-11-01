@@ -46,6 +46,7 @@ class registroTrabajador : AppCompatActivity() {
                 binding.etNacimiento.text.toString()
             )
             listaEmpleados.agregarEmpleado(emp)
+
             Toast.makeText(applicationContext, "Se ha creado a ${emp.nombre} ${emp.apellido}.", Toast.LENGTH_LONG).show()
             //mostrarDialogoEmpleado(emp)
         }

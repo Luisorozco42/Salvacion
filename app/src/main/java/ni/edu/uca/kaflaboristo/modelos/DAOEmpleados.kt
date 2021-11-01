@@ -1,4 +1,5 @@
 package ni.edu.uca.kaflaboristo.modelos
+import androidx.lifecycle.ViewModel
 
 class DAOEmpleados {
     private val listaEmpleados = arrayListOf<Empleado>()
@@ -7,4 +8,7 @@ class DAOEmpleados {
         listaEmpleados.add(e)
     }
 
+    fun mostrarEmpleado() : ArrayList<Empleado> {
+        return listaEmpleados
+    }
 }
