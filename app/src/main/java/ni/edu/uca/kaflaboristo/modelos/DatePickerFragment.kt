@@ -4,6 +4,7 @@ import ni.edu.uca.kaflaboristo.registroTrabajador
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.ReceiverCallNotAllowedException
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
@@ -22,9 +23,10 @@ class DatePickerFragment (val listener: (day:Int, month:Int, year:Int) -> Unit) 
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
-        val picker = DatePickerDialog(activity as Context, R.style.DatePickerTheme, this, day, month, year)
-        c.add(Calendar.YEAR, -18)
+        val picker = DatePickerDialog(activity as Context, R.style.DatePickerTheme, this, year, month, day)
         picker.datePicker.maxDate = c.timeInMillis
+        c.add(Calendar.YEAR, -20 )
+        picker.datePicker.minDate = c.timeInMillis
         return picker
     }
 

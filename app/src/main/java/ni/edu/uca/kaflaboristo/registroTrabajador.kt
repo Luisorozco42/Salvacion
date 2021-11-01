@@ -52,12 +52,15 @@ class registroTrabajador : AppCompatActivity() {
     }
 
     private fun onDateSelected(day: Int, month: Int, year: Int) {
-        binding.etNacimiento.setText("${day} - ${month} - ${year}")
+        binding.etNacimiento.setText( twoDigits(day) + "/" + twoDigits(month+1) + "/" + year)
     }
 
     private fun showDatePickerDialog() {
         val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month + 1, year) }
         datePicker.show(supportFragmentManager, "datePicker")
+    }
+    private fun twoDigits(n: Int): String? {
+        return if (n <= 9) "0$n" else n.toString()
     }
 
     private fun crearEmpleado(id:Int, nombre:String, apellido:String, cargo:String, nacimiento:String) : Empleado {
