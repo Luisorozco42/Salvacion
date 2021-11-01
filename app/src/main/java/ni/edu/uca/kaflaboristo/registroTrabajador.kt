@@ -16,6 +16,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ni.edu.uca.kaflaboristo.databinding.ActivityRegistroTrabajadorBinding
+import ni.edu.uca.kaflaboristo.modelos.DAOEmpleados
 import ni.edu.uca.kaflaboristo.modelos.DatePickerFragment
 import ni.edu.uca.kaflaboristo.modelos.Empleado
 
@@ -24,22 +25,29 @@ class registroTrabajador : AppCompatActivity() {
     private lateinit var binding: ActivityRegistroTrabajadorBinding
     val REQUEST_CAMERA = 1
     var foto : Uri? = null
+    val listaEmpleados = DAOEmpleados()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         binding = ActivityRegistroTrabajadorBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         binding.btnSeleccionarFoto.setOnClickListener { requestPermissions() }
         binding.btnTomarFoto.setOnClickListener{ pedirPermiso() }
         binding.etNacimiento.setOnClickListener { showDatePickerDialog() }
+
         binding.btnRegistrar.setOnClickListener {
             val emp : Empleado = crearEmpleado(
-                binding.etCodigo.toString().toInt(),
-                binding.etNombre.toString(),
-                binding.etApellido.toString(),
-                binding.etCargo.toString(),
-                binding.etNacimiento.toString()
+                binding.etCodigoTexto.text.toString().toInt(),
+                binding.etNombreTexto.text.toString(),
+                binding.etApellidoTexto.text.toString(),
+                binding.etCargoTexto.text.toString(),
+                binding.etNacimiento.text.toString()
             )
-            // mostrarDialogoEmpleado(emp)
+            listaEmpleados.agregarEmpleado(emp)
+            Toast.makeText(applicationContext, "Se ha creado a ${emp.nombre} ${emp.apellido}.", Toast.LENGTH_LONG).show()
+            //mostrarDialogoEmpleado(emp)
         }
     }
 
@@ -57,16 +65,14 @@ class registroTrabajador : AppCompatActivity() {
         return emp
     }
 
-    /*private fun mostrarDialogoEmpleado(emp : Empleado) {
+    private fun mostrarDialogoEmpleado(emp : Empleado) {
         MaterialAlertDialogBuilder(applicationContext)
             .setTitle("Nuevo empleado")
             .setMessage("Se ha registrado a ${emp.obtenerNombre()}.")
             .setCancelable(false)
-            .setPositiveButton("Ok") { _, _ ->
-
-            }
             .show()
-    }*/
+    }
+
     private fun requestPermissions() {
 
 
