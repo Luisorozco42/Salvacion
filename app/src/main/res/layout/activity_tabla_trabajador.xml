@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tablaTrabajador">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:text="Buscar un trabajador"
+        android:textSize="35sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf = "parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <EditText
+        android:id="@+id/txtNombreEmpleado"
+        android:layout_width="300sp"
+        android:layout_height="60sp"
+        android:layout_marginTop="20sp"
+        android:hint="Nombre del trabajador"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/btnBuscarEmpleados"
+        android:layout_width="100sp"
+        android:layout_height= "40sp"
+        android:text="Buscar"
+        android:layout_marginTop="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txtNombreEmpleado"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/lbIDTrabajador"
+        android:layout_width="100sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="10sp"
+        android:text="ID:"
+        android:textSize="23sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/btnBuscarEmpleados"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tvIDTrabajador"
+        android:layout_width="250sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="30sp"
+        android:textSize="23sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/btnBuscarEmpleados"
+        app:layout_constraintLeft_toRightOf="@+id/lbIDTrabajador" />
+
+
+
+    <TextView
+        android:id="@+id/lbNombreTrabajador"
+        android:layout_width="100sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="10sp"
+        android:text="Nombre:"
+        android:textSize="23sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/lbIDTrabajador"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tvNombreTrabajador"
+        android:layout_width="250sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="30sp"
+        android:textSize="23sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/tvIDTrabajador"
+        app:layout_constraintLeft_toRightOf="@+id/lbNombreTrabajador" />
+
+    <TextView
+        android:id="@+id/lbApellidoTrabajador"
+        android:layout_width="100sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="10sp"
+        android:text="Apellido:"
+        android:textSize="23sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/lbNombreTrabajador"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tvApellidoTrabajador"
+        android:layout_width="250sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="30sp"
+        android:textSize="23sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreTrabajador"
+        app:layout_constraintLeft_toRightOf="@+id/lbApellidoTrabajador" />
+
+    <TextView
+        android:id="@+id/lbCargoTrabajador"
+        android:layout_width="100sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="10sp"
+        android:text="Cargo:"
+        android:textSize="23sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/lbApellidoTrabajador"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCargoTrabajador"
+        android:layout_width="250sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="30sp"
+        android:textSize="23sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/tvApellidoTrabajador"
+        app:layout_constraintLeft_toRightOf="@+id/lbCargoTrabajador"/>
+
+    <TextView
+        android:id="@+id/lbFechaNacTrabajador"
+        android:layout_width="100sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="10sp"
+        android:text="Nombre:"
+        android:textSize="23sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/lbCargoTrabajador"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tvFechaNacTrabajador"
+        android:layout_width="250sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="30sp"
+        android:textSize="23sp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/tvCargoTrabajador"
+        app:layout_constraintLeft_toRightOf="@+id/lbFechaNacTrabajador" />
+
+    <ImageView
+        android:id="@+id/imgTrabadorPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="235sp"
+        app:layout_constraintTop_toBottomOf="@id/tvFechaNacTrabajador"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
