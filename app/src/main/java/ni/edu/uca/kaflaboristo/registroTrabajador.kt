@@ -12,8 +12,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ni.edu.uca.kaflaboristo.databinding.ActivityRegistroTrabajadorBinding
 import ni.edu.uca.kaflaboristo.modelos.DAOEmpleados
@@ -25,7 +25,6 @@ class registroTrabajador : AppCompatActivity() {
     private lateinit var binding: ActivityRegistroTrabajadorBinding
     val REQUEST_CAMERA = 1
     var foto : Uri? = null
-    val listaEmpleados = DAOEmpleados()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -45,7 +44,7 @@ class registroTrabajador : AppCompatActivity() {
                 binding.etCargoTexto.text.toString(),
                 binding.etNacimiento.text.toString()
             )
-            listaEmpleados.agregarEmpleado(emp)
+
 
             Toast.makeText(applicationContext, "Se ha creado a ${emp.nombre} ${emp.apellido}.", Toast.LENGTH_LONG).show()
             //mostrarDialogoEmpleado(emp)
