@@ -16,7 +16,7 @@ class tablaTrabajador : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
+        val i: Int = 0
         binding.btnBuscarEmpleados.setOnClickListener(){
             val model: DAOEmpleados
         }
