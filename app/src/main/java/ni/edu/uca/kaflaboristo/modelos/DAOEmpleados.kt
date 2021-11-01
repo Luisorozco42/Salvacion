@@ -1,14 +1,20 @@
 package ni.edu.uca.kaflaboristo.modelos
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DAOEmpleados {
-    private val listaEmpleados = arrayListOf<Empleado>()
-
-    fun agregarEmpleado(e : Empleado) {
-        listaEmpleados.add(e)
+class DAOEmpleados : ViewModel() {
+    private val lista: MutableLiveData<List<Empleado>> by lazy {
+        MutableLiveData<List<Empleado>>().also {
+            loadUsers()
+        }
     }
 
-    fun mostrarEmpleado() : ArrayList<Empleado> {
-        return listaEmpleados
+    fun getUsers(): LiveData<List<Empleado>> {
+        return lista
+    }
+
+    private fun loadUsers() {
+        // Do an asynchronous operation to fetch users.
     }
 }
