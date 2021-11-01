@@ -1,15 +1,15 @@
 package ni.edu.uca.kaflaboristo
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import ni.edu.uca.kaflaboristo.databinding.ActivityTablaTrabajadorBinding
-import ni.edu.uca.kaflaboristo.modelos.DAOEmpleados
-import ni.edu.uca.kaflaboristo.registroTrabajador
+import ni.edu.uca.kaflaboristo.modelos.AppViewModel
 
 class tablaTrabajador : AppCompatActivity() {
     private lateinit var binding: ActivityTablaTrabajadorBinding
+    private val viewModel: AppViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityTablaTrabajadorBinding.inflate(layoutInflater)
@@ -18,7 +18,7 @@ class tablaTrabajador : AppCompatActivity() {
 
 
         binding.btnBuscarEmpleados.setOnClickListener(){
-            val model: DAOEmpleados
+            //Toast.makeText(this, viewModel.getEmployee(binding.txtNombreEmpleado.toString()), Toast.LENGTH_SHORT).show()
         }
     }
 }

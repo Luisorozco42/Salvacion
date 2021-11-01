@@ -12,20 +12,23 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ni.edu.uca.kaflaboristo.databinding.ActivityRegistroTrabajadorBinding
-import ni.edu.uca.kaflaboristo.modelos.DAOEmpleados
+import ni.edu.uca.kaflaboristo.modelos.AppViewModel
 import ni.edu.uca.kaflaboristo.modelos.DatePickerFragment
 import ni.edu.uca.kaflaboristo.modelos.Empleado
+import androidx.fragment.app.viewModels
+
+
 
 class registroTrabajador : AppCompatActivity() {
-
+    private val viewModel: AppViewModel by viewModels()
     private lateinit var binding: ActivityRegistroTrabajadorBinding
     val REQUEST_CAMERA = 1
     var foto : Uri? = null
-
+    var listaTemporal: MutableList<Empleado> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         binding = ActivityRegistroTrabajadorBinding.inflate(layoutInflater)
@@ -37,6 +40,11 @@ class registroTrabajador : AppCompatActivity() {
         binding.etNacimiento.setOnClickListener { showDatePickerDialog() }
 
         binding.btnRegistrar.setOnClickListener {
+            viewModel.addNewEmployee(listaTemporal)
+            Toast.makeText(this, viewModel.getEmployee("luis"), Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnGuardar.setOnClickListener(){
             val emp : Empleado = crearEmpleado(
                 binding.etCodigoTexto.text.toString().toInt(),
                 binding.etNombreTexto.text.toString(),
@@ -44,6 +52,7 @@ class registroTrabajador : AppCompatActivity() {
                 binding.etCargoTexto.text.toString(),
                 binding.etNacimiento.text.toString()
             )
+            listaTemporal.add(emp)
 
 
             Toast.makeText(applicationContext, "Se ha creado a ${emp.nombre} ${emp.apellido}.", Toast.LENGTH_LONG).show()
@@ -82,7 +91,7 @@ class registroTrabajador : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             when{
-                ContextCompat.checkSelfPermission(this,android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED -> {
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED -> {
                     pickPhotoFromGallery()
                 }
                 else -> permiso.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -104,7 +113,7 @@ class registroTrabajador : AppCompatActivity() {
     private val starForActivityGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ){ result->
-        if (result.resultCode == Activity.RESULT_OK){
+        if (result.resultCode == RESULT_OK){
             val data = result.data?.data
             binding.ivFoto.setImageURI(data)
         }
@@ -112,7 +121,7 @@ class registroTrabajador : AppCompatActivity() {
     private val starForActivityCamara = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ){ result->
-        if (result.resultCode == Activity.RESULT_OK){
+        if (result.resultCode == RESULT_OK){
             binding.ivFoto.setImageURI(foto)
         }
     }
@@ -134,7 +143,7 @@ class registroTrabajador : AppCompatActivity() {
     private fun pedirPermiso() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             when{
-                ContextCompat.checkSelfPermission(this,android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED -> {
+                ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED -> {
                     dispatchTakePictureIntent()
                 }
                 else -> damePermi.launch(Manifest.permission.CAMERA)
