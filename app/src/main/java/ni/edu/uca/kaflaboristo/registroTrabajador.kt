@@ -105,6 +105,10 @@ class registroTrabajador : AppCompatActivity() {
             val data = result.data?.data
             binding.ivFoto.setImageURI(data)
         }
+    }
+    private val starForActivityCamara = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){ result->
         if (result.resultCode == Activity.RESULT_OK){
             binding.ivFoto.setImageURI(foto)
         }
@@ -122,7 +126,7 @@ class registroTrabajador : AppCompatActivity() {
         foto = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,value)
         val camaraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         camaraIntent.putExtra(MediaStore.EXTRA_OUTPUT,foto)
-        starForActivityGallery.launch(camaraIntent)
+        starForActivityCamara.launch(camaraIntent)
     }
     private fun pedirPermiso() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
