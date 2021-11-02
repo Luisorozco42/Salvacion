@@ -13,19 +13,19 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Registro de trabajadores"
-        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornersSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornersSize" />
 
     <TextView
+        android:id="@+id/msgMensajePrincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/msgMensajePrincipal"
+        android:layout_margin="20dp"
         android:text="Ingrese la informacion solicitada"
-        app:layout_constraintTop_toBottomOf="@id/msgRegistro"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="20dp" />
+        app:layout_constraintTop_toBottomOf="@id/msgRegistro" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etCodigo"
@@ -41,9 +41,9 @@
         app:layout_constraintTop_toBottomOf="@id/msgMensajePrincipal">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCodigo_texto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etCodigo_texto"/>
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,9 +61,9 @@
         app:layout_constraintTop_toBottomOf="@id/etCodigo">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNombre_texto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etNombre_texto"/>
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,9 +78,9 @@
         app:layout_constraintTop_toBottomOf="@id/etNombre">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etApellido_texto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etApellido_texto"/>
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,9 +94,9 @@
         app:layout_constraintTop_toBottomOf="@id/etApellido">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCargo_texto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etCargo_texto"/>
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,24 +104,22 @@
         android:id="@+id/etdFechaNacimiento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:hint="Fecha de nacimiento"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etCargo"
-        android:layout_margin="20dp" >
+        app:layout_constraintTop_toBottomOf="@id/etCargo">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNacimiento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:id="@+id/etNacimiento"
             android:clickable="true"
             android:focusable="false"
-            android:maxLines="1"
-            />
+            android:inputType="date"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
 
     <LinearLayout
@@ -131,36 +129,36 @@
         app:layout_constraintTop_toBottomOf="@id/etdFechaNacimiento">
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:id="@+id/btnSeleccionarFoto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
             android:text="Seleccionar foto"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etdFechaNacimiento"
-            android:layout_margin="20dp"/>
+            app:layout_constraintTop_toBottomOf="@id/etdFechaNacimiento" />
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:id="@+id/btnTomarFoto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
             android:text="Tomar foto"
-            app:layout_constraintStart_toEndOf="@id/btnSeleccionarFoto"
             app:layout_constraintEnd_toEndOf="@id/btnSeleccionarFoto"
-            app:layout_constraintTop_toBottomOf="@id/etdFechaNacimiento"
-            android:layout_margin="20dp" />
+            app:layout_constraintStart_toEndOf="@id/btnSeleccionarFoto"
+            app:layout_constraintTop_toBottomOf="@id/etdFechaNacimiento" />
 
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnRegistrar"
+        android:layout_margin="20dp"
         android:text="Registrar"
-        app:layout_constraintTop_toBottomOf="@id/llBotonesFoto"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="20dp"/>
+        app:layout_constraintTop_toBottomOf="@id/llBotonesFoto" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivFoto"
@@ -169,12 +167,12 @@
         android:layout_marginTop="96dp"
         android:layout_marginBottom="52dp"
         app:layout_constraintBottom_toTopOf="@+id/etCargo"
-        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornersSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/etNombre"
         app:layout_constraintTop_toBottomOf="@+id/msgRegistro"
-        tools:srcCompat="@tools:sample/avatars"
         app:layout_editor_absoluteX="115dp"
-        app:layout_editor_absoluteY="66dp"/>
+        app:layout_editor_absoluteY="66dp"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornersSize"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

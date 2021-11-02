@@ -1,10 +1,8 @@
 package ni.edu.uca.kaflaboristo.modelos
 
-import ni.edu.uca.kaflaboristo.registroTrabajador
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
-import android.content.ReceiverCallNotAllowedException
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
