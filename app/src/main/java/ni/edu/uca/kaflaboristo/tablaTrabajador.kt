@@ -6,7 +6,7 @@ import android.widget.Toast
 import ni.edu.uca.kaflaboristo.databinding.ActivityTablaTrabajadorBinding
 import ni.edu.uca.kaflaboristo.modelos.Empleado
 
-class tablaTrabajador(val Dempleado: DAOEmpleado) : AppCompatActivity() {
+class tablaTrabajador(val dEmpleado: DAOEmpleado) : AppCompatActivity() {
     private lateinit var binding: ActivityTablaTrabajadorBinding
     //private var lista : MutableList<Empleado> = mutableListOf()
 
