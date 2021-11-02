@@ -1,7 +1,6 @@
 package ni.edu.uca.kaflaboristo
 
 import android.Manifest
-import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -16,12 +15,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ni.edu.uca.kaflaboristo.databinding.ActivityRegistroTrabajadorBinding
-import ni.edu.uca.kaflaboristo.modelos.AppViewModel
 import ni.edu.uca.kaflaboristo.modelos.DatePickerFragment
 import ni.edu.uca.kaflaboristo.modelos.Empleado
 
-class registroTrabajador(private var lista: MutableList<Empleado>) : AppCompatActivity() {
+class registroTrabajador() : AppCompatActivity() {
     //private val viewModel: AppViewModel by viewModels()
+    public var lista: MutableList<Empleado> = mutableListOf()
     private lateinit var binding: ActivityRegistroTrabajadorBinding
     val REQUEST_CAMERA = 1
     var foto : Uri? = null
@@ -47,7 +46,7 @@ class registroTrabajador(private var lista: MutableList<Empleado>) : AppCompatAc
             //cont += 1
             //viewModel.incremento(cont)
             lista.add(emp)
-            //Toast.makeText(this, viewModel.getEmployee("luis", cont).nombre, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, lista[0].nombre, Toast.LENGTH_SHORT).show()
         }
 
         /*binding.btnGuardar.setOnClickListener(){
@@ -71,7 +70,7 @@ class registroTrabajador(private var lista: MutableList<Empleado>) : AppCompatAc
         val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month + 1, year) }
         datePicker.show(supportFragmentManager, "datePicker")
     }
-    private fun twoDigits(n: Int): String? {
+    private fun twoDigits(n: Int): String {
         return if (n <= 9) "0$n" else n.toString()
     }
 
