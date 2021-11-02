@@ -12,14 +12,13 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
+
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ni.edu.uca.kaflaboristo.databinding.ActivityRegistroTrabajadorBinding
 import ni.edu.uca.kaflaboristo.modelos.AppViewModel
 import ni.edu.uca.kaflaboristo.modelos.DatePickerFragment
 import ni.edu.uca.kaflaboristo.modelos.Empleado
-import androidx.fragment.app.viewModels
 
 class registroTrabajador(private var lista: MutableList<Empleado>) : AppCompatActivity() {
     //private val viewModel: AppViewModel by viewModels()
