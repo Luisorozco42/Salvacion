@@ -4,9 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ni.edu.uca.kaflaboristo.databinding.ActivityMainBinding
+import ni.edu.uca.kaflaboristo.modelos.Empleado
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity() : AppCompatActivity() {
+    private var lista: MutableList<Empleado> = mutableListOf()
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,11 +16,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnRegistrarEmpleado.setOnClickListener {
-            startActivity(Intent(this, registroTrabajador::class.java))
+            startActivity(Intent(this, registroTrabajador(lista)::class.java))
         }
 
         binding.btnBuscarEmpleados.setOnClickListener {
-            startActivity(Intent(this, tablaTrabajador::class.java))
+            startActivity(Intent(this, tablaTrabajador(lista)::class.java))
         }
 
     }

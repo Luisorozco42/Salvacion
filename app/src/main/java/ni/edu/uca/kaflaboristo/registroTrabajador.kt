@@ -21,14 +21,12 @@ import ni.edu.uca.kaflaboristo.modelos.DatePickerFragment
 import ni.edu.uca.kaflaboristo.modelos.Empleado
 import androidx.fragment.app.viewModels
 
-
-
-class registroTrabajador : AppCompatActivity() {
-    private val viewModel: AppViewModel by viewModels()
+class registroTrabajador(private var lista: MutableList<Empleado>) : AppCompatActivity() {
+    //private val viewModel: AppViewModel by viewModels()
     private lateinit var binding: ActivityRegistroTrabajadorBinding
     val REQUEST_CAMERA = 1
     var foto : Uri? = null
-    var listaTemporal: MutableList<Empleado> = mutableListOf()
+    var cont: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
 
         binding = ActivityRegistroTrabajadorBinding.inflate(layoutInflater)
@@ -40,11 +38,6 @@ class registroTrabajador : AppCompatActivity() {
         binding.etNacimiento.setOnClickListener { showDatePickerDialog() }
 
         binding.btnRegistrar.setOnClickListener {
-            viewModel.addNewEmployee(listaTemporal)
-            Toast.makeText(this, viewModel.getEmployee("luis"), Toast.LENGTH_SHORT).show()
-        }
-
-        binding.btnGuardar.setOnClickListener(){
             val emp : Empleado = crearEmpleado(
                 binding.etCodigoTexto.text.toString().toInt(),
                 binding.etNombreTexto.text.toString(),
@@ -52,13 +45,24 @@ class registroTrabajador : AppCompatActivity() {
                 binding.etCargoTexto.text.toString(),
                 binding.etNacimiento.text.toString()
             )
-            listaTemporal.add(emp)
+            //cont += 1
+            //viewModel.incremento(cont)
+            lista.add(emp)
+            //Toast.makeText(this, viewModel.getEmployee("luis", cont).nombre, Toast.LENGTH_SHORT).show()
+        }
+
+        /*binding.btnGuardar.setOnClickListener(){
+
 
 
             Toast.makeText(applicationContext, "Se ha creado a ${emp.nombre} ${emp.apellido}.", Toast.LENGTH_LONG).show()
             //mostrarDialogoEmpleado(emp)
-        }
+        }*/
     }
+
+    /*public fun datos(list: MutableList<Empleado>){
+        listaTemporal = list
+    }*/
 
     private fun onDateSelected(day: Int, month: Int, year: Int) {
         binding.etNacimiento.setText( twoDigits(day) + "/" + twoDigits(month+1) + "/" + year)
