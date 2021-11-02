@@ -3,7 +3,6 @@ package ni.edu.uca.kaflaboristo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import ni.edu.uca.kaflaboristo.databinding.ActivityTablaTrabajadorBinding
 import ni.edu.uca.kaflaboristo.modelos.AppViewModel
 import ni.edu.uca.kaflaboristo.modelos.Empleado
