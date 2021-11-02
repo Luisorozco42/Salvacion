@@ -1,7 +1,6 @@
 package ni.edu.uca.kaflaboristo
 
 import android.Manifest
-import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,21 +11,20 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContentProviderCompat.requireContext
+
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ni.edu.uca.kaflaboristo.databinding.ActivityRegistroTrabajadorBinding
-import ni.edu.uca.kaflaboristo.modelos.DAOEmpleados
 import ni.edu.uca.kaflaboristo.modelos.DatePickerFragment
 import ni.edu.uca.kaflaboristo.modelos.Empleado
 
-class registroTrabajador : AppCompatActivity() {
-
+class registroTrabajador() : AppCompatActivity() {
+    //private val viewModel: AppViewModel by viewModels()
+    public var lista: MutableList<Empleado> = mutableListOf()
     private lateinit var binding: ActivityRegistroTrabajadorBinding
     val REQUEST_CAMERA = 1
     var foto : Uri? = null
-    val listaEmpleados = DAOEmpleados()
-
+    var cont: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
 
         binding = ActivityRegistroTrabajadorBinding.inflate(layoutInflater)
@@ -45,11 +43,24 @@ class registroTrabajador : AppCompatActivity() {
                 binding.etCargoTexto.text.toString(),
                 binding.etNacimiento.text.toString()
             )
-            listaEmpleados.agregarEmpleado(emp)
+            //cont += 1
+            //viewModel.incremento(cont)
+            lista.add(emp)
+            Toast.makeText(this, lista[0].nombre, Toast.LENGTH_SHORT).show()
+        }
+
+        /*binding.btnGuardar.setOnClickListener(){
+
+
+
             Toast.makeText(applicationContext, "Se ha creado a ${emp.nombre} ${emp.apellido}.", Toast.LENGTH_LONG).show()
             //mostrarDialogoEmpleado(emp)
-        }
+        }*/
     }
+
+    /*public fun datos(list: MutableList<Empleado>){
+        listaTemporal = list
+    }*/
 
     private fun onDateSelected(day: Int, month: Int, year: Int) {
         binding.etNacimiento.setText( twoDigits(day) + "/" + twoDigits(month+1) + "/" + year)
@@ -59,7 +70,7 @@ class registroTrabajador : AppCompatActivity() {
         val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month + 1, year) }
         datePicker.show(supportFragmentManager, "datePicker")
     }
-    private fun twoDigits(n: Int): String? {
+    private fun twoDigits(n: Int): String {
         return if (n <= 9) "0$n" else n.toString()
     }
 
@@ -82,7 +93,7 @@ class registroTrabajador : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             when{
-                ContextCompat.checkSelfPermission(this,android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED -> {
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED -> {
                     pickPhotoFromGallery()
                 }
                 else -> permiso.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -104,7 +115,7 @@ class registroTrabajador : AppCompatActivity() {
     private val starForActivityGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ){ result->
-        if (result.resultCode == Activity.RESULT_OK){
+        if (result.resultCode == RESULT_OK){
             val data = result.data?.data
             binding.ivFoto.setImageURI(data)
         }
@@ -112,7 +123,7 @@ class registroTrabajador : AppCompatActivity() {
     private val starForActivityCamara = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ){ result->
-        if (result.resultCode == Activity.RESULT_OK){
+        if (result.resultCode == RESULT_OK){
             binding.ivFoto.setImageURI(foto)
         }
     }
@@ -134,7 +145,7 @@ class registroTrabajador : AppCompatActivity() {
     private fun pedirPermiso() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             when{
-                ContextCompat.checkSelfPermission(this,android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED -> {
+                ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED -> {
                     dispatchTakePictureIntent()
                 }
                 else -> damePermi.launch(Manifest.permission.CAMERA)
