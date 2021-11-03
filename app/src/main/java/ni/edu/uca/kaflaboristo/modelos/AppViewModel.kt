@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import ni.edu.uca.kaflaboristo.registroTrabajador
 
 class AppViewModel : ViewModel() {
-    var lista: MutableList<Empleado> = mutableListOf()
+    /*var lista: MutableList<Empleado> = mutableListOf()
     private var _counter = MutableLiveData(0)
     private var _lista = MutableLiveData<MutableList<Empleado>>()
     val currentLista: LiveData<MutableList<Empleado>> get() = _lista
@@ -45,10 +45,11 @@ class AppViewModel : ViewModel() {
             name,
             apellido,
             puesto,
-            fechaNac
+            fechaNac,
+
         )
 
         return tempName
-    }
+    } */
 }
 

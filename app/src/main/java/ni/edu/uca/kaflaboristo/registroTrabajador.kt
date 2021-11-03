@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 
 import androidx.core.content.ContextCompat
+import androidx.core.view.drawToBitmap
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ni.edu.uca.kaflaboristo.databinding.ActivityMainBinding
 import ni.edu.uca.kaflaboristo.databinding.ActivityRegistroTrabajadorBinding
@@ -42,21 +44,16 @@ class registroTrabajador() : AppCompatActivity() {
                 binding.etNombreTexto.text.toString(),
                 binding.etApellidoTexto.text.toString(),
                 binding.etCargoTexto.text.toString(),
-                binding.etNacimiento.text.toString()
+                binding.etNacimiento.text.toString(),
+                binding.ivFoto.drawToBitmap()
             )
             DAOEmpleados.listaEmpleados.add(emp)
-            Toast.makeText(this, DAOEmpleados.listaEmpleados[0].nombre, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "El usuario ha sido registrado", Toast.LENGTH_SHORT).show()
         }
     }
-
-    /*public fun datos(list: MutableList<Empleado>){
-        listaTemporal = list
-    }*/
-
     private fun onDateSelected(day: Int, month: Int, year: Int) {
-        binding.etNacimiento.setText( twoDigits(day) + "/" + twoDigits(month+1) + "/" + year)
+        binding.etNacimiento.setText( twoDigits(day) + "/" + twoDigits(month) + "/" + year)
     }
-
     private fun showDatePickerDialog() {
         val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month + 1, year) }
         datePicker.show(supportFragmentManager, "datePicker")
@@ -65,8 +62,8 @@ class registroTrabajador() : AppCompatActivity() {
         return if (n <= 9) "0$n" else n.toString()
     }
 
-    private fun crearEmpleado(id:Int, nombre:String, apellido:String, cargo:String, nacimiento:String) : Empleado {
-        val emp = Empleado(id, nombre, apellido, cargo, nacimiento)
+    private fun crearEmpleado(id:Int, nombre:String, apellido:String, cargo:String, nacimiento:String, foto:Bitmap) : Empleado {
+        val emp = Empleado(id, nombre, apellido, cargo, nacimiento, foto)
         return emp
     }
 
@@ -77,7 +74,6 @@ class registroTrabajador() : AppCompatActivity() {
             .setCancelable(false)
             .show()
     }
-
     private fun requestPermissions() {
 
 
@@ -94,7 +90,6 @@ class registroTrabajador() : AppCompatActivity() {
             pickPhotoFromGallery()
         }
     }
-
     private val permiso = registerForActivityResult(ActivityResultContracts.RequestPermission()){ isGranted->
         if(isGranted) {
             pickPhotoFromGallery()
@@ -102,7 +97,6 @@ class registroTrabajador() : AppCompatActivity() {
             Toast.makeText(this, "Necesitas habilitar los permisos",Toast.LENGTH_LONG).show()
         }
     }
-
     private val starForActivityGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ){ result->
@@ -118,13 +112,11 @@ class registroTrabajador() : AppCompatActivity() {
             binding.ivFoto.setImageURI(foto)
         }
     }
-
     private fun pickPhotoFromGallery() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
         starForActivityGallery.launch(intent)
     }
-
     private fun dispatchTakePictureIntent() {
         val value = ContentValues()
         value.put(MediaStore.Images.Media.TITLE,"Nueva Imagen")
