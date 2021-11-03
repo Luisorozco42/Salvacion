@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ni.edu.uca.kaflaboristo.databinding.ActivityMainBinding
+import ni.edu.uca.kaflaboristo.modelos.DAOEmpleados
 import ni.edu.uca.kaflaboristo.modelos.Empleado
 
 class MainActivity() : AppCompatActivity() {
