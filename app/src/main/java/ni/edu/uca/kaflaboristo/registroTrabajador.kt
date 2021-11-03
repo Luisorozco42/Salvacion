@@ -14,17 +14,18 @@ import androidx.activity.result.contract.ActivityResultContracts
 
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import ni.edu.uca.kaflaboristo.databinding.ActivityMainBinding
 import ni.edu.uca.kaflaboristo.databinding.ActivityRegistroTrabajadorBinding
+import ni.edu.uca.kaflaboristo.modelos.DAOEmpleados
 import ni.edu.uca.kaflaboristo.modelos.DatePickerFragment
 import ni.edu.uca.kaflaboristo.modelos.Empleado
 
 class registroTrabajador() : AppCompatActivity() {
     //private val viewModel: AppViewModel by viewModels()
-    public var lista: MutableList<Empleado> = mutableListOf()
     private lateinit var binding: ActivityRegistroTrabajadorBinding
     val REQUEST_CAMERA = 1
     var foto : Uri? = null
-    var cont: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         binding = ActivityRegistroTrabajadorBinding.inflate(layoutInflater)
@@ -43,19 +44,9 @@ class registroTrabajador() : AppCompatActivity() {
                 binding.etCargoTexto.text.toString(),
                 binding.etNacimiento.text.toString()
             )
-            //cont += 1
-            //viewModel.incremento(cont)
-            lista.add(emp)
-            Toast.makeText(this, lista[0].nombre, Toast.LENGTH_SHORT).show()
+            DAOEmpleados.listaEmpleados.add(emp)
+            Toast.makeText(this, DAOEmpleados.listaEmpleados[0].nombre, Toast.LENGTH_SHORT).show()
         }
-
-        /*binding.btnGuardar.setOnClickListener(){
-
-
-
-            Toast.makeText(applicationContext, "Se ha creado a ${emp.nombre} ${emp.apellido}.", Toast.LENGTH_LONG).show()
-            //mostrarDialogoEmpleado(emp)
-        }*/
     }
 
     /*public fun datos(list: MutableList<Empleado>){
